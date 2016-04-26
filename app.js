@@ -40,7 +40,6 @@ map.on('style.load', function() {
         featureCollection.features.push(feature);
     });
 
-    console.log(featureCollection);
     var airSource = {
         'type': 'geojson',
         'data': featureCollection,
@@ -64,5 +63,19 @@ map.on('style.load', function() {
             'circle-blur': 1
         }
     };
+
+    var airLabel = {
+        'id': 'airLabel',
+        'source': 'airSource',
+        'type': 'symbol',
+        'layout': {
+            'text-field': "{aqi}",
+            'text-size': 16
+        },
+        'paint': {
+            'text-color': 'black'
+        }
+    };
     map.addLayer(airStyle);
+    map.addLayer(airLabel);
 });
